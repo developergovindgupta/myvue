@@ -6,16 +6,24 @@
       <path d="M50.56 0L128 133.12 204.8 0h-47.36L128 51.2 97.92 0H50.56z" fill="#35495E" />
     </svg>
     <HelloWorld msg="Welcome in myVUE Template Collections" />
+    <on-off-switch v-model="isOn"></on-off-switch>
   </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import OnOffSwitch from "./components/OnOffSwitch.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    HelloWorld,
+    OnOffSwitch
+  },
+  data() {
+    return {
+      isOn: false
+    };
   }
 };
 </script>
