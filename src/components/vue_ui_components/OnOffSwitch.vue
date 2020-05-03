@@ -1,7 +1,7 @@
 <template>
   <label class="OnOffSwitch">
     <span>On-Off-Switch</span>
-    <input type="checkbox" class="green tinyswitch" v-model="value" />
+    <input type="checkbox" class="green tinyswitch" v-model="status" />
     <div>
       <div></div>
     </div>
@@ -13,6 +13,16 @@ export default {
   name: "OnOffSwitch",
   props: {
     value: Boolean
+  },
+  data() {
+    return {
+      status: this.value
+    };
+  },
+  watch: {
+    status() {
+      this.$emit("input", this.status);
+    }
   }
 };
 </script>
@@ -30,8 +40,8 @@ input[type="checkbox"] {
 }
 input[type="checkbox"] + div {
   vertical-align: bottom;
-  width: 34px;
-  height: 18px;
+  width: 36px;
+  height: 20px;
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.1);
