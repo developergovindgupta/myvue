@@ -1,0 +1,12 @@
+[
+  {
+    "formID": 0,
+    "formName": "HomeForm",
+    "displayName": "Home"
+  },
+  {
+    "formID": 1,
+    "formName": "OnOffSwitchForm",
+    "displayName": "OnOffSwitch"
+  }
+]

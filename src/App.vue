@@ -18,7 +18,7 @@
       <nav :class="{open:isMenuOpen}">
         <ul>
           <li
-            :class="{active:form.formID==activeFormID}"
+            :class="{active:form.formID==activeForm.formID}"
             v-for="form in forms"
             :key="form.formID"
             @click="setActiveForm(form)"
@@ -26,7 +26,31 @@
         </ul>
       </nav>
       <section>
-        <on-off-switch-form v-if="activeFormID==1"></on-off-switch-form>
+        <table style="width:100%">
+          <tr>
+            <td style="width:50px;">
+              <button class="btnPrev" @click="showPrevForm">&lt;&lt; Prev</button>
+            </td>
+            <td></td>
+            <td style="width:50px;">
+              <button class="btnNext" @click="showNextForm">Next &gt;&gt;</button>
+            </td>
+          </tr>
+        </table>
+        <hr />
+        <component :is="this.activeForm.formName"></component>
+        <hr />
+        <table style="width:100%">
+          <tr>
+            <td style="width:50px;">
+              <button class="btnPrev" @click="showPrevForm">&lt;&lt; Prev</button>
+            </td>
+            <td></td>
+            <td style="width:50px;">
+              <button class="btnNext" @click="showNextForm">Next &gt;&gt;</button>
+            </td>
+          </tr>
+        </table>
       </section>
     </main>
     <footer>footer</footer>
@@ -35,27 +59,19 @@
 
 <script>
 import OnOffSwitchForm from "./components/vueForms/OnOffSwitchForm";
+import HomeForm from "./components/vueForms/HomeForm";
+import FormsList from "./forms.json";
 export default {
   name: "App",
   components: {
-    OnOffSwitchForm: OnOffSwitchForm
+    OnOffSwitchForm: OnOffSwitchForm,
+    HomeForm: HomeForm
   },
   data() {
     return {
       isMenuOpen: true,
-      activeFormID: 0,
-      forms: [
-        {
-          formID: 0,
-          formName: "homeForm",
-          displayName: "Home"
-        },
-        {
-          formID: 1,
-          formName: "OnOffSwitchForm",
-          displayName: "OnOffSwitch"
-        }
-      ]
+      forms: FormsList,
+      activeForm: FormsList[0]
     };
   },
   methods: {
@@ -63,8 +79,24 @@ export default {
       this.isMenuOpen = !this.isMenuOpen;
     },
     setActiveForm(frm) {
-      this.activeFormID = frm.formID;
+      this.activeForm = frm;
       window.document.title = "myVueUI:" + frm.displayName;
+    },
+    showPrevForm() {
+      for (let i = 1; i < FormsList.length; i++) {
+        if (FormsList[i] == this.activeForm) {
+          this.activeForm = FormsList[i - 1];
+          break;
+        }
+      }
+    },
+    showNextForm() {
+      for (let i = 0; i < FormsList.length - 1; i++) {
+        if (FormsList[i] == this.activeForm) {
+          this.activeForm = FormsList[i + 1];
+          break;
+        }
+      }
     }
   }
 };
@@ -90,5 +122,23 @@ export default {
   padding: 1px;
   margin: 3px 0px;
   background-color: white;
+}
+button {
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: solid 1px;
+  white-space: nowrap;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 200ms;
+  box-shadow: 2px 2px 2px black;
+}
+button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 1px 1px 4px black;
+  color: white;
+}
+hr {
+  margin: 10px 5px;
 }
 </style>
