@@ -12,6 +12,7 @@ body {
   padding: 5px;
   overflow: hidden;
   box-shadow: inset 0px 0px 5px black;
+  font-size: 12pt;
 }
 
 div#app {
@@ -88,6 +89,94 @@ section {
   flex-shrink: 1;
   padding: 5px;
 }
+h1 {
+  font-size: 24pt;
+}
+h2 {
+  font-size: 20pt;
+}
+h3 {
+  font-size: 16pt;
+}
+h4 {
+  font-size: 12pt;
+}
+h5 {
+  font-size: 10pt;
+}
+h6 {
+  font-size: 8pt;
+}
+div[valign="middle"] {
+  display: flex;
+  align-items: center;
+}
+/*Flex div as table layout*/
+.Flex_Table {
+  width: 100%;
+}
+.Flex_Table > .Flex_Row {
+  display: flex;
+  flex-direction: row;
+}
+.Flex_Table > .Flex_Row > .Flex_Cell {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.Flex_Table > .Flex_Row > .Flex_Cell_Inline {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.Flex_Table.Wrap > .Flex_Row {
+  flex-wrap: wrap;
+}
+div[width="50%"] {
+  width: 50%;
+}
+.ExampleCode {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: solid 1px black;
+  padding: 10px;
+  margin: 5px;
+  font-size: 10pt;
+
+  height: 200px;
+  overflow: auto;
+  white-space: nowrap;
+}
+.ExampleOutput {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: solid 1px black;
+  padding: 10px;
+  margin: 5px;
+  font-style: italic;
+  height: 200px;
+  overflow: auto;
+}
+@media screen and (max-width: 800px) {
+  body {
+    font-size: 10pt;
+  }
+
+  h1 {
+    font-size: 18pt;
+  }
+  h2 {
+    font-size: 14pt;
+  }
+  h3 {
+    font-size: 12pt;
+  }
+  h4 {
+    font-size: 10pt;
+  }
+  h5 {
+    font-size: 8pt;
+  }
+  h6 {
+    font-size: 6pt;
+  }
+}
 
 @media screen and (max-width: 400px) {
   nav {
@@ -100,5 +189,12 @@ section {
   nav.open {
     border: solid 1px red;
     width: 100%;
+  }
+  div[width="50%"] {
+    width: 100%;
+  }
+  .ExampleOutput {
+    min-height: 100px;
+    height: auto;
   }
 }

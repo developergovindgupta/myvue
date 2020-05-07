@@ -1,10 +1,15 @@
 <template>
   <label class="OnOffSwitch">
-    <span>On-Off-Switch</span>
+    <span v-if="leftLabel">{{leftLabel}}&nbsp;</span>
+    <span v-if="showLabelBefore && (trueLabel ||falseLabel)">{{status?trueLabel:falseLabel}}&nbsp;</span>
     <input type="checkbox" class="green tinyswitch" v-model="status" />
     <div>
       <div></div>
     </div>
+    <span
+      v-if="showLabelBefore==false  && (trueLabel ||falseLabel)"
+    >&nbsp;{{status?trueLabel:falseLabel}}</span>
+    <span v-if="rightLabel">&nbsp;{{rightLabel}}</span>
   </label>
 </template>
 
@@ -12,7 +17,12 @@
 export default {
   name: "OnOffSwitch",
   props: {
-    value: Boolean
+    value: Boolean,
+    showLabelBefore: Boolean,
+    trueLabel: { type: String, default: "" },
+    falseLabel: { type: String, default: "" },
+    leftLabel: { type: String, default: "" },
+    rightLabel: { type: String, default: "" }
   },
   data() {
     return {
@@ -31,9 +41,7 @@ export default {
   position: relative;
   display: inline-block;
 }
-.OnOffSwitch span {
-  margin-right: 10px;
-}
+
 input[type="checkbox"] {
   position: absolute;
   opacity: 0;
