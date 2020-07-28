@@ -29,25 +29,27 @@
         <table style="width:100%">
           <tr>
             <td style="width:50px;">
-              <button class="btnPrev" @click="showPrevForm">&lt;&lt; Prev</button>
+              <button class="btn btnPrev" @click="showPrevForm">&lt;&lt; Prev</button>
             </td>
             <td></td>
             <td style="width:50px;">
-              <button class="btnNext" @click="showNextForm">Next &gt;&gt;</button>
+              <button class="btn btnNext" @click="showNextForm">Next &gt;&gt;</button>
             </td>
           </tr>
         </table>
         <hr />
-        <component :is="this.activeForm.formName"></component>
+        <keep-alive>
+          <component :is="this.activeForm.formName"></component>
+        </keep-alive>
         <hr />
         <table style="width:100%">
           <tr>
             <td style="width:50px;">
-              <button class="btnPrev" @click="showPrevForm">&lt;&lt; Prev</button>
+              <button class="btn btnPrev" @click="showPrevForm">&lt;&lt; Prev</button>
             </td>
             <td></td>
             <td style="width:50px;">
-              <button class="btnNext" @click="showNextForm">Next &gt;&gt;</button>
+              <button class="btn btnNext" @click="showNextForm">Next &gt;&gt;</button>
             </td>
           </tr>
         </table>
@@ -60,11 +62,13 @@
 <script>
 import OnOffSwitchForm from "./components/vueForms/OnOffSwitchForm";
 import HomeForm from "./components/vueForms/HomeForm";
+import EditorForm from "./components/vueForms/EditorForm";
 import FormsList from "./forms.json";
 export default {
   name: "App",
   components: {
     OnOffSwitchForm: OnOffSwitchForm,
+    EditorForm: EditorForm,
     HomeForm: HomeForm
   },
   data() {
@@ -123,7 +127,7 @@ export default {
   margin: 3px 0px;
   background-color: white;
 }
-button {
+button.btn {
   padding: 5px 20px;
   border-radius: 5px;
   border: solid 1px;
@@ -133,7 +137,7 @@ button {
   transition: all 200ms;
   box-shadow: 2px 2px 2px black;
 }
-button:hover {
+button.btn:hover {
   background-color: rgba(0, 0, 0, 0.7);
   box-shadow: 1px 1px 4px black;
   color: white;

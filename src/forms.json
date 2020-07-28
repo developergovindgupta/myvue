@@ -8,5 +8,10 @@
     "formID": 1,
     "formName": "OnOffSwitchForm",
     "displayName": "OnOffSwitch"
+  },
+  {
+    "formID": 2,
+    "formName": "EditorForm",
+    "displayName": "Editor"
   }
 ]
